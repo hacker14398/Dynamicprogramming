@@ -28,7 +28,7 @@ typedef vector<char> vc;
 typedef vector<ll>   vl;
 typedef vector<pii>  vpii;
 typedef vector<pl>   vpl;
-const int mod = 1e9+7;
+const int mod = (int) 1e9+7;
 
 int main() {
     ios_base::sync_with_stdio(false);
@@ -40,12 +40,14 @@ int main() {
     dp[0] = 1;
     vl ans(n);
     rep(i, n) cin >> ans[i];
-    repin(i, 1, x){
-        repin(j, 0, n-1){
-            if(ans[j] > i) continue;
-            dp[i] = (dp[i] + dp[i-ans[j]])%mod;
+    repin(i, 0, n-1){
+        repin(j, 1, x){
+            if((j-ans[i])>=0){
+                dp[j] += dp[j-ans[i]];
+                dp[j] %= mod;
+            }
         }
     }
-    cout<<dp[x]%mod;
+    cout<<dp[x];
     return 0;
 }
