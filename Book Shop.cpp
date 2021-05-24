@@ -33,17 +33,16 @@ ll mod = 1e9+7;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    // freopen("input.txt", "r", stdin);
-    // freopen("output.txt", "w", stdout);
-    int n; cin >> n;
-    vl dp(n+1, 0);
-    vl a(n);
-    repin(i, 1, n) cin >> a[i];
-    dp[1] = 0;
-    dp[2] = abs(a[1] - a[2]);
-    repin(i, 3, n){
-    	dp[i] = min((dp[i-1] + abs(a[i]-a[i-1])), (dp[i-2] + abs(a[i]-a[i-2])));
+    freopen("input.txt", "r", stdin);
+    freopen("output.txt", "w", stdout);
+    ll n, x; cin >> n >> x;
+    vl p(n), pages(n);
+    rep(i, n) cin >> p[i];
+    rep(i, n) cin >> pages[i];
+    vl dp(x+1, 0);
+    repin(i, 1, x){
+        rep(i, 0, n-1){
+            
+        }
     }
-    cout<<dp[n];
-    return 0;
 }

@@ -28,22 +28,21 @@ typedef vector<char> vc;
 typedef vector<ll>   vl;
 typedef vector<pii>  vpii;
 typedef vector<pl>   vpl;
-ll mod = 1e9+7;
+const int mod = 1e9+7;
 
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     // freopen("input.txt", "r", stdin);
     // freopen("output.txt", "w", stdout);
-    int n; cin >> n;
-    vl dp(n+1, 0);
-    vl a(n);
-    repin(i, 1, n) cin >> a[i];
-    dp[1] = 0;
-    dp[2] = abs(a[1] - a[2]);
-    repin(i, 3, n){
-    	dp[i] = min((dp[i-1] + abs(a[i]-a[i-1])), (dp[i-2] + abs(a[i]-a[i-2])));
+    ll n; cin >> n;
+    vl dp(n+1, INT_MAX);
+    dp[0] = 0;
+    repin(i, 1, n){
+        for(auto c : to_string(i)){
+            dp[i] = min(dp[i], 1+dp[i-(c-'0')]);
+        }
     }
-    cout<<dp[n];
+    cout<<dp[n]<<"\n";
     return 0;
 }
