@@ -33,16 +33,25 @@ ll mod = 1e9+7;
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    ll n, x; cin >> n >> x;
-    vl p(n), pages(n);
-    rep(i, n) cin >> p[i];
-    rep(i, n) cin >> pages[i];
-    vector<vl> dp(n+1, vl(n+1, 0))
-    repin(i, 1, x){
-        rep(i, 0, n-1){
-            
+    // freopen("input.txt", "r", stdin);
+    // freopen("output.txt", "w", stdout);
+    ll l, b; cin >> l >> b;
+    vector<vector<ll> > dp(l+1, vl(b+1, INT_MAX));
+    repin(i, 0, l){
+        repin(j, 0, b){
+            if(i == j) dp[i][j] = 0;
+            else{
+                //for vertical cutting
+                repin(k, 1, i-1){
+                    dp[i][j] = min(dp[i][j], 1+dp[k][j]+dp[i-k][j]);
+                }
+                //for horizontal cutting
+                repin(k, 1, j-1){
+                    dp[i][j] = min(dp[i][j], 1+dp[i][k]+dp[i][j-k]);
+                }
+            }
         }
     }
+    cout<<dp[l][b];
+    return 0;
 }

@@ -30,19 +30,24 @@ typedef vector<pii>  vpii;
 typedef vector<pl>   vpl;
 ll mod = 1e9+7;
 
+int guitar(int n, vector<int> &x){
+    sort(x.begin(), x.end(), greater<int>());
+    int count = 0;
+    for(int i = 0; i < n; i++){
+        count += x[i]*(n-i);
+    }
+    return count;
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     freopen("input.txt", "r", stdin);
     freopen("output.txt", "w", stdout);
-    ll n, x; cin >> n >> x;
-    vl p(n), pages(n);
-    rep(i, n) cin >> p[i];
-    rep(i, n) cin >> pages[i];
-    vector<vl> dp(n+1, vl(n+1, 0))
-    repin(i, 1, x){
-        rep(i, 0, n-1){
-            
-        }
-    }
+    int n; cin >> n;
+    vector<int> x(n);
+    rep(i, n) cin >> x[i];
+    int result = guitar(n, x);
+    cout<<result;
+    return 0;
 }
